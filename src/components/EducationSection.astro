@@ -1,0 +1,74 @@
+---
+const education = [
+  {
+    title: "Tecnicatura Superior en Análisis de Sistemas Informáticos",
+    institution: "Instituto Cristo Obrero",
+    period: "2022 - 2024",
+    type: "education",
+  },
+  {
+    title: "Auxiliar de Programación",
+    institution: "Instituto Cristo Obrero",
+    period: "2022 - 2024",
+    type: "education",
+  },
+  {
+    title: "Licenciatura en Tecnologías Digitales",
+    institution: "Universidad de la Ciudad de Buenos Aires (UNICABA)",
+    period: "2026 - Cursando",
+    type: "education",
+  },
+];
+
+const courses = [
+  {
+    title: "Backend con C#/.NET",
+    description: "Entity Framework, LinQ, ASP.NET, Blazor/Razor, APIs, Microsoft SQL Server",
+  },
+  {
+    title: "Backend con Java",
+    description: "MySQL, persistencia de datos, testing, Java Spring, Spring Data JPA, Spring Security, DevOps",
+  },
+  {
+    title: "Foundational C# with Microsoft",
+    description: "Curso de fundamentos de C# en colaboración entre FreeCodeCamp y Microsoft",
+  },
+];
+---
+
+<section id="education" class="section">
+  <div class="container">
+    <h2 class="section-title">
+      <span class="number">03.</span> Educación & Cursos
+    </h2>
+    <p class="section-subtitle">
+      Formación académica y aprendizaje continuo.
+    </p>
+
+    <div class="grid-2" style="margin-bottom: 48px;">
+      {education.map((edu) => (
+        <div class="card">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px;">
+            <div>
+              <h3 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 4px;">{edu.title}</h3>
+              <p style="color: var(--accent-light); font-weight: 500; font-size: 0.9rem;">{edu.institution}</p>
+            </div>
+            <span class="code tag">{edu.period}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <h3 style="font-size: 1.1rem; color: var(--accent-light); margin-bottom: 20px; font-weight: 600; font-family: 'Fira Code', monospace;">
+      Cursos Destacados
+    </h3>
+    <div class="grid-3">
+      {courses.map((course) => (
+        <div class="card">
+          <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 8px;">{course.title}</h3>
+          <p style="color: var(--text-secondary); font-size: 0.85rem; line-height: 1.5;">{course.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

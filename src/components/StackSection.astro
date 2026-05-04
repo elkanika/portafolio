@@ -1,0 +1,68 @@
+---
+const stacks = {
+  "Lenguajes": [
+    { name: "Ruby", icon: "💎" },
+    { name: "Python", icon: "🐍" },
+    { name: "JavaScript", icon: "⚡" },
+    { name: "TypeScript", icon: "🔷" },
+    { name: "Go", icon: "🔵" },
+    { name: "C#", icon: "🟣" },
+    { name: "PHP", icon: "🐘" },
+    { name: "VB 6.0/.NET", icon: "📦" },
+  ],
+  "Frameworks & Backend": [
+    { name: "Ruby on Rails", icon: "🛤️" },
+    { name: "Laravel", icon: "🔥" },
+    { name: "ASP.NET", icon: "🟣" },
+    { name: "Entity Framework", icon: "🗄️" },
+    { name: "Blazor", icon: "🧩" },
+    { name: "Node.js", icon: "💚" },
+    { name: "Java Spring", icon: "🍃" },
+  ],
+  "Frontend": [
+    { name: "React", icon: "⚛️" },
+    { name: "AstroJS", icon: "🚀" },
+    { name: "HTML/CSS", icon: "🎨" },
+    { name: "Bootstrap", icon: "🅱️" },
+    { name: "Tailwind CSS", icon: "🌊" },
+  ],
+  "Herramientas & Infraestructura": [
+    { name: "Docker", icon: "🐳" },
+    { name: "Git", icon: "🔀" },
+    { name: "Linux", icon: "🐧" },
+    { name: "SQL", icon: "🗃️" },
+    { name: "MCP Server", icon: "🔌" },
+    { name: "SIU Guaraní", icon: "🏛️" },
+    { name: "SIET", icon: "📋" },
+  ],
+};
+---
+
+<section id="stack" class="section">
+  <div class="container">
+    <h2 class="section-title">
+      <span class="number">02.</span> Stack Tecnológico
+    </h2>
+    <p class="section-subtitle">
+      Tecnologías con las que trabajo y he trabajado a lo largo de mi carrera.
+    </p>
+
+    {
+      Object.entries(stacks).map(([category, items]) => (
+        <div style="margin-bottom: 40px;">
+          <h3 style="font-size: 1.1rem; color: var(--accent-light); margin-bottom: 16px; font-weight: 600; font-family: 'Fira Code', monospace;">
+            {category}
+          </h3>
+          <div class="grid-4">
+            {items.map((tech) => (
+              <div class="card" style="text-align: center; padding: 20px 16px;">
+                <div style="font-size: 2rem; margin-bottom: 8px;">{tech.icon}</div>
+                <div class="code" style="font-size: 0.85rem; color: var(--text-primary);">{tech.name}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>

@@ -1,0 +1,64 @@
+---
+const experiences = [
+  {
+    role: "Desarrollo de sistemas web",
+    company: "FIUBA",
+    period: "Junio 2025 - Actualidad",
+    tech: ["React", "TypeScript", "PHP (Laravel)", "AstroJS", "Python", ".NET", "MCP Servers"],
+    description: [
+      "Desarrollo de la página web de cursos y aplicaciones multiplataforma",
+      "Implementación de APIs para la integración con los sistemas administrativos de la FIUBA",
+      "Aplicaciones multiplataforma (móvil, escritorio y web)",
+      "Automatización de servidores MCP",
+      "Gestión de indicadores del campus",
+      "Programación Full Stack de Agentes de IA",
+      "Desarrollo y optimización de soluciones basadas en inteligencia artificial",
+      "Ajustes y Pruebas de NotebookLM",
+    ],
+  },
+  {
+    role: "Trabajo administrativo de títulos",
+    company: "FIUBA",
+    period: "Septiembre 2024 - Junio 2025",
+    tech: ["SIU Guaraní", "SIET", "Sistema de expedientes electrónicos", "Office"],
+    description: [
+      "Gestión de expedientes electrónicos",
+      "Manejo de sistemas administrativos universitarios",
+      "Aplicaciones ofimáticas (Word, Excel, etc.)",
+    ],
+  },
+];
+---
+
+<section id="experience" class="section">
+  <div class="container">
+    <h2 class="section-title">
+      <span class="number">03.</span> Experiencia
+    </h2>
+    <p class="section-subtitle">
+      Mi trayectoria profesional combinando sistemas y desarrollo.
+    </p>
+
+    <div style="display: flex; flex-direction: column; gap: 32px;">
+      {experiences.map((exp) => (
+        <div class="card">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 8px; margin-bottom: 12px;">
+            <div>
+              <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--text-primary);">{exp.role}</h3>
+              <p style="color: var(--accent-light); font-weight: 600; font-size: 0.95rem;">{exp.company}</p>
+            </div>
+            <span class="code" style="color: var(--text-muted); font-size: 0.85rem; white-space: nowrap;">{exp.period}</span>
+          </div>
+
+          <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px;">
+            {exp.tech.map((t) => <span class="tag">{t}</span>)}
+          </div>
+
+          <ul style="color: var(--text-secondary); font-size: 0.9rem; padding-left: 20px; display: flex; flex-direction: column; gap: 6px;">
+            {exp.description.map((d) => <li>{d}</li>)}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,40 @@
+---
+import "../styles/global.css";
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Ezequiel Benavidez - Desarrollador Backend | Portfolio" />
+    <title>Ezequiel Benavidez | Backend Developer</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="nav-inner">
+        <a href="#" class="nav-logo">
+          <span>&lt;</span>EB<span> /&gt;</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="#about"><span class="number">01.</span> Sobre mí</a></li>
+          <li><a href="#stack"><span class="number">02.</span> Stack</a></li>
+          <li><a href="#experience"><span class="number">03.</span> Experiencia</a></li>
+          <li><a href="#projects"><span class="number">04.</span> Proyectos</a></li>
+          <li><a href="#contact"><span class="number">05.</span> Contacto</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer style="text-align: center; padding: 40px 0; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 0.85rem;">
+      <div class="container">
+        <p>Diseñado y construido por Ezequiel Benavidez &copy; {new Date().getFullYear()}</p>
+      </div>
+    </footer>
+  </body>
+</html>

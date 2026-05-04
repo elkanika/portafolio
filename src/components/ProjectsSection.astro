@@ -1,0 +1,112 @@
+---
+const GITHUB_USER = "elkanika";
+
+interface GithubRepo {
+  id: number;
+  name: string;
+  description: string | null;
+  html_url: string;
+  language: string | null;
+  stargazers_count: number;
+  fork: boolean;
+  topics: string[];
+  updated_at: string;
+  homepage: string | null;
+}
+
+const repos: GithubRepo[] = await fetch(
+  `https://api.github.com/users/${GITHUB_USER}/repos?per_page=100&sort=updated`
+).then((r) => r.json());
+
+const filtered = repos
+  .filter((r) => !r.fork)
+  .filter((r) => r.name !== GITHUB_USER)
+  .slice(0, 30);
+
+const langColors: Record<string, string> = {
+  Ruby: "#701516",
+  Python: "#3572A5",
+  JavaScript: "#f1e05a",
+  TypeScript: "#3178c6",
+  HTML: "#e34c26",
+  CSS: "#563d7c",
+  Go: "#00ADD8",
+  "C#": "#178600",
+  PHP: "#4F5D95",
+  "C++": "#f34b7d",
+  Java: "#b07219",
+  Rust: "#dea584",
+};
+
+function formatDate(dateStr: string) {
+  const d = new Date(dateStr);
+  return d.toLocaleDateString("es-AR", { year: "numeric", month: "short" });
+}
+---
+
+<section id="projects" class="section">
+  <div class="container">
+    <h2 class="section-title">
+      <span class="number">04.</span> Proyectos
+    </h2>
+    <p class="section-subtitle">
+      Algunos de mis repositorios destacados en GitHub.
+      <a href={`https://github.com/${GITHUB_USER}?tab=repositories`} target="_blank" rel="noopener noreferrer" style="color: var(--accent-light); text-decoration: none; margin-left: 8px;">
+        Ver todos →
+      </a>
+    </p>
+
+    <div class="grid-3">
+      {
+        filtered.map((repo) => {
+          const langColor = repo.language ? langColors[repo.language] : "var(--border)";
+          return (
+            <a
+              href={repo.html_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="card"
+              style="text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 12px; padding: 24px;"
+            >
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  <span style="font-size: 1.3rem;">📁</span>
+                  <h3 class="code" style="font-size: 0.95rem; font-weight: 600; color: var(--accent-light);">{repo.name}</h3>
+                </div>
+                {repo.stargazers_count > 0 && (
+                  <span style="display: flex; align-items: center; gap: 4px; color: var(--text-muted); font-size: 0.85rem;">
+                    ⭐ {repo.stargazers_count}
+                  </span>
+                )}
+              </div>
+
+              <p style="color: var(--text-secondary); font-size: 0.85rem; line-height: 1.5; flex: 1;">
+                {repo.description || "Sin descripción"}
+              </p>
+
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-top: auto;">
+                <div style="display: flex; align-items: center; gap: 6px;">
+                  {repo.language && (
+                    <>
+                      <span style={`width: 10px; height: 10px; border-radius: 50%; background: ${langColor};`}></span>
+                      <span style="color: var(--text-muted); font-size: 0.8rem;">{repo.language}</span>
+                    </>
+                  )}
+                </div>
+                <span style="color: var(--text-muted); font-size: 0.75rem;">{formatDate(repo.updated_at)}</span>
+              </div>
+
+              {repo.topics.length > 0 && (
+                <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                  {repo.topics.slice(0, 3).map((t) => (
+                    <span class="tag" style="font-size: 0.7rem; padding: 2px 8px;">{t}</span>
+                  ))}
+                </div>
+              )}
+            </a>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>

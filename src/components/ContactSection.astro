@@ -1,0 +1,93 @@
+---
+const languages = [
+  { name: "Español", level: "Nativo", percentage: 100 },
+  { name: "Inglés", level: "B2", percentage: 70 },
+];
+
+const contactInfo = [
+  {
+    label: "Teléfono",
+    value: "(+54) 11 5019-8857",
+    href: "tel:+541150198857",
+    icon: "📞",
+  },
+  {
+    label: "Email",
+    value: "ezequiel.bena04@gmail.com",
+    href: "mailto:ezequiel.bena04@gmail.com",
+    icon: "✉️",
+  },
+  {
+    label: "Ubicación",
+    value: "Capital Federal, Buenos Aires, Argentina",
+    icon: "📍",
+  },
+  {
+    label: "GitHub",
+    value: "github.com/elkanika",
+    href: "https://github.com/elkanika",
+    icon: "🐙",
+  },
+  {
+    label: "LinkedIn",
+    value: "Ezequiel Sharif Benavidez",
+    href: "https://www.linkedin.com/in/ezequiel-sharif-benavidez/",
+    icon: "🔗",
+  },
+];
+---
+
+<section id="contact" class="section">
+  <div class="container">
+    <h2 class="section-title">
+      <span class="number">05.</span> Contacto
+    </h2>
+    <p class="section-subtitle">
+      ¿Tenés un proyecto interesante o querés conversar? Escribime.
+    </p>
+
+    <div class="grid-2">
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        {contactInfo.map((item) => (
+          <a
+            href={item.href ?? undefined}
+            class="card"
+            style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 16px; padding: 20px 24px;"
+            target={item.href?.startsWith("http") ? "_blank" : undefined}
+            rel={item.href?.startsWith("http") ? "noopener noreferrer" : undefined}
+          >
+            <div style="font-size: 1.5rem; min-width: 40px; text-align: center;">{item.icon}</div>
+            <div>
+              <p style="font-size: 0.8rem; color: var(--text-muted); font-family: 'Fira Code', monospace;">{item.label}</p>
+              <p style="color: var(--text-primary); font-weight: 500;">{item.value}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <div class="card" style="display: flex; flex-direction: column; gap: 24px;">
+        <h3 style="font-size: 1.1rem; font-weight: 700; font-family: 'Fira Code', monospace; color: var(--accent-light);">
+          Idiomas
+        </h3>
+        {languages.map((lang) => (
+          <div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+              <span style="font-weight: 600;">{lang.name}</span>
+              <span class="tag">{lang.level}</span>
+            </div>
+            <div style="height: 8px; background: var(--border); border-radius: 4px; overflow: hidden;">
+              <div
+                style={`height: 100%; width: ${lang.percentage}%; background: var(--gradient-1); border-radius: 4px; transition: width 1s ease;`}
+              ></div>
+            </div>
+          </div>
+        ))}
+
+        <div style="margin-top: 16px; display: flex; gap: 12px;">
+          <a href="mailto:ezequiel.bena04@gmail.com" class="btn btn-primary">Enviar Email</a>
+          <a href="https://www.linkedin.com/in/ezequiel-sharif-benavidez/" target="_blank" rel="noopener noreferrer" class="btn btn-outline">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
