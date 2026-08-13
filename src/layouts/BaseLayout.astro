@@ -1,5 +1,9 @@
 ---
 import "../styles/global.css";
+
+// El sitio se sirve bajo `base: "/portafolio"`, así que las rutas absolutas
+// de /public tienen que llevar ese prefijo o dan 404 en GitHub Pages.
+const favicon = `${import.meta.env.BASE_URL.replace(/\/$/, "")}/favicon.svg`;
 ---
 
 <!doctype html>
@@ -9,10 +13,21 @@ import "../styles/global.css";
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Ezequiel Benavidez - Desarrollador Backend | Portfolio" />
     <title>Ezequiel Benavidez | Backend Developer</title>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={favicon} />
+    <script is:inline>
+      // Corre antes del primer pintado: habilita los estados iniciales de GSAP.
+      document.documentElement.classList.add("js");
+      // Red de seguridad: si el bundle falla, mostramos todo igual.
+      // Los <script type="module"> son diferidos, así que `load` ya espera a que
+      // el bundle se ejecute (o falle): no hay carrera con un timeout fijo.
+      addEventListener("load", function () {
+        var el = document.documentElement;
+        if (!el.classList.contains("gsap-ready")) el.classList.remove("js");
+      });
+    </script>
   </head>
   <body>
-    <nav class="nav">
+    <nav class="nav" data-nav>
       <div class="nav-inner">
         <a href="#" class="nav-logo">
           <span>&lt;</span>EB<span> /&gt;</span>
@@ -25,6 +40,7 @@ import "../styles/global.css";
           <li><a href="#contact"><span class="number">05.</span> Contacto</a></li>
         </ul>
       </div>
+      <div class="scroll-progress" data-scroll-progress></div>
     </nav>
 
     <main>
@@ -36,5 +52,9 @@ import "../styles/global.css";
         <p>Diseñado y construido por Ezequiel Benavidez &copy; {new Date().getFullYear()}</p>
       </div>
     </footer>
+
+    <script>
+      import "../scripts/animations";
+    </script>
   </body>
 </html>

@@ -14,9 +14,35 @@ interface GithubRepo {
   homepage: string | null;
 }
 
-const repos: GithubRepo[] = await fetch(
-  `https://api.github.com/users/${GITHUB_USER}/repos?per_page=100&sort=updated`
-).then((r) => r.json());
+// La API de GitHub limita a 60 req/h sin token y los runners de Actions comparten IP.
+// Si falla, el sitio se construye igual y mostramos un enlace al perfil.
+async function fetchRepos(): Promise<GithubRepo[]> {
+  try {
+    const res = await fetch(
+      `https://api.github.com/users/${GITHUB_USER}/repos?per_page=100&sort=updated`,
+      {
+        headers: {
+          Accept: "application/vnd.github+json",
+          "User-Agent": `${GITHUB_USER}-portfolio`,
+        },
+        signal: AbortSignal.timeout(15000),
+      }
+    );
+
+    if (!res.ok) {
+      console.warn(`[projects] GitHub respondió ${res.status} ${res.statusText}`);
+      return [];
+    }
+
+    const data = await res.json();
+    return Array.isArray(data) ? data : [];
+  } catch (err) {
+    console.warn("[projects] No se pudieron obtener los repos:", err);
+    return [];
+  }
+}
+
+const repos = await fetchRepos();
 
 const filtered = repos
   .filter((r) => !r.fork)
@@ -46,17 +72,34 @@ function formatDate(dateStr: string) {
 
 <section id="projects" class="section">
   <div class="container">
-    <h2 class="section-title">
+    <h2 class="section-title" data-anim="fade-up">
       <span class="number">04.</span> Proyectos
     </h2>
-    <p class="section-subtitle">
+    <p class="section-subtitle" data-anim="fade-up">
       Algunos de mis repositorios destacados en GitHub.
       <a href={`https://github.com/${GITHUB_USER}?tab=repositories`} target="_blank" rel="noopener noreferrer" style="color: var(--accent-light); text-decoration: none; margin-left: 8px;">
         Ver todos →
       </a>
     </p>
 
-    <div class="grid-3">
+    {filtered.length === 0 && (
+      <div class="card" data-anim="fade-up" style="text-align: center;">
+        <p style="color: var(--text-secondary); font-size: 0.95rem;">
+          No se pudo cargar la lista de repositorios en este momento.
+        </p>
+        <a
+          href={`https://github.com/${GITHUB_USER}?tab=repositories`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-outline"
+          style="margin-top: 16px;"
+        >
+          Ver proyectos en GitHub
+        </a>
+      </div>
+    )}
+
+    <div class="grid-3" data-anim-group>
       {
         filtered.map((repo) => {
           const langColor = repo.language ? langColors[repo.language] : "var(--border)";

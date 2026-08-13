@@ -39,15 +39,15 @@ const contactInfo = [
 
 <section id="contact" class="section">
   <div class="container">
-    <h2 class="section-title">
+    <h2 class="section-title" data-anim="fade-up">
       <span class="number">05.</span> Contacto
     </h2>
-    <p class="section-subtitle">
+    <p class="section-subtitle" data-anim="fade-up">
       ¿Tenés un proyecto interesante o querés conversar? Escribime.
     </p>
 
     <div class="grid-2">
-      <div style="display: flex; flex-direction: column; gap: 16px;">
+      <div data-anim-group style="display: flex; flex-direction: column; gap: 16px;">
         {contactInfo.map((item) => (
           <a
             href={item.href ?? undefined}
@@ -65,7 +65,7 @@ const contactInfo = [
         ))}
       </div>
 
-      <div class="card" style="display: flex; flex-direction: column; gap: 24px;">
+      <div class="card" data-anim="fade-right" style="display: flex; flex-direction: column; gap: 24px;">
         <h3 style="font-size: 1.1rem; font-weight: 700; font-family: 'Fira Code', monospace; color: var(--accent-light);">
           Idiomas
         </h3>
@@ -75,9 +75,9 @@ const contactInfo = [
               <span style="font-weight: 600;">{lang.name}</span>
               <span class="tag">{lang.level}</span>
             </div>
-            <div style="height: 8px; background: var(--border); border-radius: 4px; overflow: hidden;">
+            <div data-bar style="height: 8px; background: var(--border); border-radius: 4px; overflow: hidden;">
               <div
-                style={`height: 100%; width: ${lang.percentage}%; background: var(--gradient-1); border-radius: 4px; transition: width 1s ease;`}
+                style={`height: 100%; width: ${lang.percentage}%; background: var(--gradient-1); border-radius: 4px;`}
               ></div>
             </div>
           </div>

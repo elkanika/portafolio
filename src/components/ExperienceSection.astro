@@ -32,14 +32,14 @@ const experiences = [
 
 <section id="experience" class="section">
   <div class="container">
-    <h2 class="section-title">
+    <h2 class="section-title" data-anim="fade-up">
       <span class="number">03.</span> Experiencia
     </h2>
-    <p class="section-subtitle">
+    <p class="section-subtitle" data-anim="fade-up">
       Mi trayectoria profesional combinando sistemas y desarrollo.
     </p>
 
-    <div style="display: flex; flex-direction: column; gap: 32px;">
+    <div data-anim-group style="display: flex; flex-direction: column; gap: 32px;">
       {experiences.map((exp) => (
         <div class="card">
           <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 8px; margin-bottom: 12px;">

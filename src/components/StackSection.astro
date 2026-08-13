@@ -40,20 +40,20 @@ const stacks = {
 
 <section id="stack" class="section">
   <div class="container">
-    <h2 class="section-title">
+    <h2 class="section-title" data-anim="fade-up">
       <span class="number">02.</span> Stack Tecnológico
     </h2>
-    <p class="section-subtitle">
+    <p class="section-subtitle" data-anim="fade-up">
       Tecnologías con las que trabajo y he trabajado a lo largo de mi carrera.
     </p>
 
     {
       Object.entries(stacks).map(([category, items]) => (
         <div style="margin-bottom: 40px;">
-          <h3 style="font-size: 1.1rem; color: var(--accent-light); margin-bottom: 16px; font-weight: 600; font-family: 'Fira Code', monospace;">
+          <h3 data-anim="fade-left" style="font-size: 1.1rem; color: var(--accent-light); margin-bottom: 16px; font-weight: 600; font-family: 'Fira Code', monospace;">
             {category}
           </h3>
-          <div class="grid-4">
+          <div class="grid-4" data-anim-group>
             {items.map((tech) => (
               <div class="card" style="text-align: center; padding: 20px 16px;">
                 <div style="font-size: 2rem; margin-bottom: 8px;">{tech.icon}</div>

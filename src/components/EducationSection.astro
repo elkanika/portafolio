@@ -38,14 +38,14 @@ const courses = [
 
 <section id="education" class="section">
   <div class="container">
-    <h2 class="section-title">
+    <h2 class="section-title" data-anim="fade-up">
       <span class="number">03.</span> Educación & Cursos
     </h2>
-    <p class="section-subtitle">
+    <p class="section-subtitle" data-anim="fade-up">
       Formación académica y aprendizaje continuo.
     </p>
 
-    <div class="grid-2" style="margin-bottom: 48px;">
+    <div class="grid-2" data-anim-group style="margin-bottom: 48px;">
       {education.map((edu) => (
         <div class="card">
           <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px;">
@@ -59,10 +59,10 @@ const courses = [
       ))}
     </div>
 
-    <h3 style="font-size: 1.1rem; color: var(--accent-light); margin-bottom: 20px; font-weight: 600; font-family: 'Fira Code', monospace;">
+    <h3 data-anim="fade-left" style="font-size: 1.1rem; color: var(--accent-light); margin-bottom: 20px; font-weight: 600; font-family: 'Fira Code', monospace;">
       Cursos Destacados
     </h3>
-    <div class="grid-3">
+    <div class="grid-3" data-anim-group>
       {courses.map((course) => (
         <div class="card">
           <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 8px;">{course.title}</h3>

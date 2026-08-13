@@ -3,15 +3,19 @@
   "type": "module",
   "version": "1.0.0",
   "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro check && astro build",
-    "preview": "astro preview",
+    "dev": "cross-env NODE_USE_ENV_PROXY=1 NO_PROXY=localhost,127.0.0.1,::1 astro dev",
+    "start": "cross-env NODE_USE_ENV_PROXY=1 NO_PROXY=localhost,127.0.0.1,::1 astro dev",
+    "build": "astro check && cross-env NODE_USE_ENV_PROXY=1 NO_PROXY=localhost,127.0.0.1,::1 astro build",
+    "preview": "cross-env NO_PROXY=localhost,127.0.0.1,::1 astro preview",
     "astro": "astro"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
     "astro": "^5.3.0",
+    "gsap": "^3.15.0",
     "typescript": "^5.7.0"
+  },
+  "devDependencies": {
+    "cross-env": "^10.1.0"
   }
 }
